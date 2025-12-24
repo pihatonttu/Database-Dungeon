@@ -1,0 +1,194 @@
+{
+  "version": "0.1.0",
+  "heroes": [
+    {
+      "id": "strategist",
+      "name": "Strategist",
+      "icon": "🧙",
+      "description": "Master of deception with many cards to play",
+      "color": "purple",
+      "stats": {
+        "base_hp": 100,
+        "base_gold": 10,
+        "base_crit": 5,
+        "card_slots": 4
+      },
+      "starting_weapon": "wooden_sword",
+      "card_pool": {
+        "guaranteed": ["scout", "mirage"],
+        "random_from": ["deception", "utility"],
+        "random_count": 4
+      }
+    },
+    {
+      "id": "warrior",
+      "name": "Warrior",
+      "icon": "⚔️",
+      "description": "Tough fighter who relies on strength over tricks",
+      "color": "red",
+      "stats": {
+        "base_hp": 120,
+        "base_gold": 10,
+        "base_crit": 5,
+        "card_slots": 2
+      },
+      "starting_weapon": "iron_sword",
+      "card_pool": {
+        "guaranteed": ["tough_start"],
+        "random_from": ["difficulty", "utility"],
+        "random_count": 3
+      }
+    },
+    {
+      "id": "rogue",
+      "name": "Rogue",
+      "icon": "🗡️",
+      "description": "Glass cannon with gold and critical strikes",
+      "color": "green",
+      "stats": {
+        "base_hp": 80,
+        "base_gold": 40,
+        "base_crit": 15,
+        "card_slots": 3
+      },
+      "starting_weapon": "daggers",
+      "card_pool": {
+        "guaranteed": ["gold_rush", "lucky_star"],
+        "random_from": ["deception", "utility"],
+        "random_count": 3
+      }
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "icon": "🛡️",
+      "description": "Holy warrior with strong defense",
+      "color": "yellow",
+      "stats": {
+        "base_hp": 110,
+        "base_gold": 10,
+        "base_crit": 5,
+        "card_slots": 2
+      },
+      "starting_weapon": "war_hammer",
+      "card_pool": {
+        "guaranteed": ["tough_start", "iron_skin"],
+        "random_from": ["utility", "difficulty"],
+        "random_count": 2
+      }
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "icon": "🏹",
+      "description": "Balanced ranged fighter with sharp eyes",
+      "color": "cyan",
+      "stats": {
+        "base_hp": 90,
+        "base_gold": 20,
+        "base_crit": 10,
+        "card_slots": 3
+      },
+      "starting_weapon": "hunting_bow",
+      "card_pool": {
+        "guaranteed": ["scout"],
+        "random_from": ["deception", "utility"],
+        "random_count": 4
+      }
+    },
+    {
+      "id": "berserker",
+      "name": "Berserker",
+      "icon": "🪓",
+      "description": "Reckless warrior who hits hard but takes risks",
+      "color": "orange",
+      "stats": {
+        "base_hp": 100,
+        "base_gold": 8,
+        "base_crit": 10,
+        "card_slots": 2
+      },
+      "starting_weapon": "great_axe",
+      "card_pool": {
+        "guaranteed": ["boss_rage"],
+        "random_from": ["difficulty"],
+        "random_count": 3
+      }
+    },
+    {
+      "id": "gambler",
+      "name": "Gambler",
+      "icon": "🎲",
+      "description": "Chaotic wildcard with completely random abilities",
+      "color": "pink",
+      "stats": {
+        "base_hp": 95,
+        "base_gold": 25,
+        "base_crit": 8,
+        "card_slots": 3
+      },
+      "starting_weapon": "daggers",
+      "card_pool": {
+        "guaranteed": [],
+        "random_from": ["deception", "difficulty", "utility"],
+        "random_count": 6
+      }
+    }
+  ],
+  "card_pools": {
+    "common": {
+      "description": "Cards available to all heroes each game",
+      "cards_per_game": 3,
+      "cards": [
+        "mirage",
+        "ambush",
+        "discount",
+        "tough_start",
+        "scout",
+        "xp_drain",
+        "empty_pockets",
+        "price_hike"
+      ]
+    },
+    "deception": {
+      "description": "Mind game cards",
+      "cards": ["mirage", "ambush", "fake_sign", "hidden_treasure"]
+    },
+    "difficulty": {
+      "description": "Cards that make opponent's dungeon harder",
+      "cards": [
+        "elite_spawn",
+        "poison_fog",
+        "price_hike",
+        "weakling_curse",
+        "double_trap",
+        "xp_drain",
+        "armor_break",
+        "boss_rage",
+        "cursed_weapon",
+        "empty_pockets",
+        "sparse_shelves",
+        "bad_luck",
+        "junk_dealer"
+      ]
+    },
+    "utility": {
+      "description": "Cards that help yourself",
+      "cards": [
+        "scout",
+        "discount",
+        "tough_start",
+        "wealthy_start",
+        "gold_rush",
+        "lucky_star",
+        "sharp_blade",
+        "iron_skin",
+        "treasure_hunter",
+        "healing_aura",
+        "merchant_favor",
+        "premium_stock",
+        "fortune_blessing"
+      ]
+    }
+  }
+}

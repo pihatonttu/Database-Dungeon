@@ -1,0 +1,208 @@
+{
+    "version": "0.1.0",
+    "enemies": [
+        {
+            "id": "goblin",
+            "name": "Goblin",
+            "tier": "common",
+            "position": "front",
+            "hp": 20,
+            "attack": 8,
+            "attack_variance": 3,
+            "defense": 1,
+            "gold_reward": 12,
+            "xp_reward": 8
+        },
+        {
+            "id": "goblin_archer",
+            "name": "Goblin Archer",
+            "tier": "common",
+            "position": "back",
+            "hp": 12,
+            "attack": 10,
+            "attack_variance": 4,
+            "defense": 0,
+            "gold_reward": 10,
+            "xp_reward": 6
+        },
+        {
+            "id": "skeleton",
+            "name": "Skeleton",
+            "tier": "common",
+            "position": "front",
+            "hp": 22,
+            "attack": 9,
+            "attack_variance": 3,
+            "defense": 2,
+            "gold_reward": 14,
+            "xp_reward": 10
+        },
+        {
+            "id": "spider",
+            "name": "Giant Spider",
+            "tier": "common",
+            "position": "front",
+            "hp": 15,
+            "attack": 11,
+            "attack_variance": 5,
+            "defense": 0,
+            "gold_reward": 10,
+            "xp_reward": 7
+        },
+        {
+            "id": "zombie",
+            "name": "Zombie",
+            "tier": "common",
+            "position": "front",
+            "hp": 28,
+            "attack": 7,
+            "attack_variance": 2,
+            "defense": 0,
+            "gold_reward": 8,
+            "xp_reward": 8
+        },
+        {
+            "id": "wolf",
+            "name": "Dire Wolf",
+            "tier": "common",
+            "position": "front",
+            "hp": 18,
+            "attack": 12,
+            "attack_variance": 4,
+            "defense": 1,
+            "gold_reward": 14,
+            "xp_reward": 10
+        },
+        {
+            "id": "orc_warrior",
+            "name": "Orc Warrior",
+            "tier": "uncommon",
+            "position": "front",
+            "hp": 40,
+            "attack": 14,
+            "attack_variance": 5,
+            "defense": 4,
+            "gold_reward": 25,
+            "xp_reward": 20
+        },
+        {
+            "id": "orc_shaman",
+            "name": "Orc Shaman",
+            "tier": "uncommon",
+            "position": "back",
+            "hp": 25,
+            "attack": 16,
+            "attack_variance": 6,
+            "defense": 2,
+            "gold_reward": 22,
+            "xp_reward": 18
+        },
+        {
+            "id": "dark_knight",
+            "name": "Dark Knight",
+            "tier": "uncommon",
+            "position": "front",
+            "hp": 45,
+            "attack": 15,
+            "attack_variance": 5,
+            "defense": 6,
+            "gold_reward": 28,
+            "xp_reward": 24
+        },
+        {
+            "id": "wraith",
+            "name": "Wraith",
+            "tier": "uncommon",
+            "position": "front",
+            "hp": 30,
+            "attack": 18,
+            "attack_variance": 8,
+            "defense": 0,
+            "gold_reward": 20,
+            "xp_reward": 22
+        },
+        {
+            "id": "troll",
+            "name": "Cave Troll",
+            "tier": "elite",
+            "position": "front",
+            "hp": 70,
+            "attack": 18,
+            "attack_variance": 8,
+            "defense": 5,
+            "gold_reward": 50,
+            "xp_reward": 40
+        },
+        {
+            "id": "demon",
+            "name": "Lesser Demon",
+            "tier": "elite",
+            "position": "front",
+            "hp": 60,
+            "attack": 20,
+            "attack_variance": 8,
+            "defense": 4,
+            "gold_reward": 45,
+            "xp_reward": 38
+        },
+        {
+            "id": "vampire",
+            "name": "Vampire Lord",
+            "tier": "elite",
+            "position": "front",
+            "hp": 55,
+            "attack": 22,
+            "attack_variance": 6,
+            "defense": 3,
+            "lifesteal": 5,
+            "gold_reward": 55,
+            "xp_reward": 45
+        },
+        {
+            "id": "dungeon_boss",
+            "name": "Dungeon Guardian",
+            "tier": "boss",
+            "position": "front",
+            "hp": 120,
+            "attack": 22,
+            "attack_variance": 8,
+            "defense": 8,
+            "gold_reward": 100,
+            "xp_reward": 80
+        },
+        {
+            "id": "dragon",
+            "name": "Ancient Dragon",
+            "tier": "boss",
+            "position": "front",
+            "hp": 150,
+            "attack": 28,
+            "attack_variance": 10,
+            "defense": 10,
+            "gold_reward": 150,
+            "xp_reward": 100
+        }
+    ],
+    "encounter_templates": {
+        "common_single": {
+            "enemies": ["goblin", "skeleton", "spider", "zombie", "wolf"]
+        },
+        "common_pair": {
+            "front": ["goblin", "skeleton"],
+            "back": ["goblin_archer"]
+        },
+        "uncommon_single": {
+            "enemies": ["orc_warrior", "dark_knight", "wraith"]
+        },
+        "uncommon_pair": {
+            "front": ["orc_warrior"],
+            "back": ["orc_shaman"]
+        },
+        "elite_single": {
+            "enemies": ["troll", "demon", "vampire"]
+        },
+        "boss_single": {
+            "enemies": ["dungeon_boss", "dragon"]
+        }
+    }
+}

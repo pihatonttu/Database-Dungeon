@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Button active/press states */
+button:not(:disabled):active,
+.btn:not(:disabled):active {
+    transform: scale(0.95);
+}
+
+button,
+.btn {
+    transition: all 0.1s ease-in-out;
+}
+
+/* Card selection animation */
+.card-selectable {
+    transition: all 0.15s ease-in-out;
+}
+
+.card-selectable:active {
+    transform: scale(0.98);
+}
+
+/* Spritesheet Icons - background-image set via inline style in PHP helper */
+.icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.icon-sm { width: 16px; height: 16px; background-size: 50%; }
+.icon-lg { width: 48px; height: 48px; background-size: 150%; }

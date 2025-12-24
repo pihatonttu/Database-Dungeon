@@ -1,0 +1,374 @@
+{
+  "version": "0.1.0",
+  "cards": [
+    {
+      "id": "mirage",
+      "name": "Mirage",
+      "rarity": "common",
+      "description": "One loot room in opponent's dungeon is actually empty",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "replace_room",
+        "from_type": "loot",
+        "to_actual_type": "empty",
+        "count": 1
+      }
+    },
+    {
+      "id": "ambush",
+      "name": "Ambush",
+      "rarity": "common",
+      "description": "One loot room in opponent's dungeon is actually an enemy",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "replace_room",
+        "from_type": "loot",
+        "to_actual_type": "enemy",
+        "count": 1
+      }
+    },
+    {
+      "id": "fake_sign",
+      "name": "Fake Sign",
+      "rarity": "uncommon",
+      "description": "Swap the displayed labels of two rooms",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "swap_labels",
+        "count": 2
+      }
+    },
+    {
+      "id": "hidden_treasure",
+      "name": "Hidden Treasure",
+      "rarity": "uncommon",
+      "description": "One enemy room contains bonus loot",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "add_bonus_loot",
+        "room_type": "enemy",
+        "count": 1
+      }
+    },
+    {
+      "id": "elite_spawn",
+      "name": "Elite Spawn",
+      "rarity": "uncommon",
+      "description": "One regular enemy becomes an elite",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "upgrade_enemy",
+        "from_type": "enemy",
+        "to_type": "elite",
+        "count": 1
+      }
+    },
+    {
+      "id": "poison_fog",
+      "name": "Poison Fog",
+      "rarity": "rare",
+      "description": "All rooms deal 3 damage when entered",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "room_damage",
+        "damage": 3,
+        "all_rooms": true
+      }
+    },
+    {
+      "id": "price_hike",
+      "name": "Price Hike",
+      "rarity": "uncommon",
+      "description": "Shop prices increased by 35%",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_shop_prices",
+        "multiplier": 1.35
+      }
+    },
+    {
+      "id": "weakling_curse",
+      "name": "Weakling Curse",
+      "rarity": "uncommon",
+      "description": "Opponent starts with 15 less HP",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_starting_hp",
+        "amount": -15
+      }
+    },
+    {
+      "id": "double_trap",
+      "name": "Double Trap",
+      "rarity": "rare",
+      "description": "Two enemy rooms deal 8 extra damage",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "enemy_buff",
+        "damage_bonus": 8,
+        "count": 2
+      }
+    },
+    {
+      "id": "xp_drain",
+      "name": "XP Drain",
+      "rarity": "common",
+      "description": "Opponent gains 20% less XP",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_xp_gains",
+        "multiplier": 0.8
+      }
+    },
+    {
+      "id": "armor_break",
+      "name": "Armor Break",
+      "rarity": "rare",
+      "description": "Enemies ignore 2 defense",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "armor_pierce",
+        "amount": 2
+      }
+    },
+    {
+      "id": "cursed_weapon",
+      "name": "Cursed Weapon",
+      "rarity": "uncommon",
+      "description": "Opponent's weapon deals 2 less damage",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_attack",
+        "amount": -2
+      }
+    },
+    {
+      "id": "empty_pockets",
+      "name": "Empty Pockets",
+      "rarity": "common",
+      "description": "Opponent starts with 6 less gold",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_starting_gold",
+        "amount": -6
+      }
+    },
+    {
+      "id": "boss_rage",
+      "name": "Boss Rage",
+      "rarity": "rare",
+      "description": "The boss deals 15% more damage",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "boss_buff",
+        "damage_multiplier": 1.15
+      }
+    },
+    {
+      "id": "sparse_shelves",
+      "name": "Sparse Shelves",
+      "rarity": "uncommon",
+      "description": "Opponent's shops have 1 fewer item",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "modify_shop_items",
+        "amount": -1
+      }
+    },
+    {
+      "id": "bad_luck",
+      "name": "Bad Luck",
+      "rarity": "uncommon",
+      "description": "Opponent finds slightly worse loot",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "downgrade_loot_rarity",
+        "amount": 1
+      }
+    },
+    {
+      "id": "junk_dealer",
+      "name": "Junk Dealer",
+      "rarity": "rare",
+      "description": "Opponent's shops sell worse items",
+      "type": "difficulty",
+      "target": "opponent",
+      "effect": {
+        "action": "downgrade_shop_rarity",
+        "amount": 1
+      }
+    },
+    {
+      "id": "scout",
+      "name": "Scout",
+      "rarity": "common",
+      "description": "Reveal the true content of one room before entering",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "reveal_room",
+        "count": 1
+      }
+    },
+    {
+      "id": "discount",
+      "name": "Discount",
+      "rarity": "common",
+      "description": "Shop prices reduced by 20%",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_shop_prices",
+        "multiplier": 0.8
+      }
+    },
+    {
+      "id": "tough_start",
+      "name": "Tough Start",
+      "rarity": "common",
+      "description": "Start with 12 extra HP",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_starting_hp",
+        "amount": 12
+      }
+    },
+    {
+      "id": "wealthy_start",
+      "name": "Wealthy Start",
+      "rarity": "uncommon",
+      "description": "Start with 12 extra gold",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_starting_gold",
+        "amount": 12
+      }
+    },
+    {
+      "id": "gold_rush",
+      "name": "Gold Rush",
+      "rarity": "uncommon",
+      "description": "Enemies drop 25% more gold",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_gold_drops",
+        "multiplier": 1.25
+      }
+    },
+    {
+      "id": "lucky_star",
+      "name": "Lucky Star",
+      "rarity": "uncommon",
+      "description": "Start with +8% crit chance",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_crit",
+        "amount": 8
+      }
+    },
+    {
+      "id": "sharp_blade",
+      "name": "Sharp Blade",
+      "rarity": "uncommon",
+      "description": "Deal 2 extra damage per attack",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_attack",
+        "amount": 2
+      }
+    },
+    {
+      "id": "iron_skin",
+      "name": "Iron Skin",
+      "rarity": "uncommon",
+      "description": "Gain +2 defense",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_defense",
+        "amount": 2
+      }
+    },
+    {
+      "id": "treasure_hunter",
+      "name": "Treasure Hunter",
+      "rarity": "rare",
+      "description": "Better loot from loot rooms",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "upgrade_loot_rarity",
+        "amount": 1
+      }
+    },
+    {
+      "id": "healing_aura",
+      "name": "Healing Aura",
+      "rarity": "rare",
+      "description": "Heal 4 HP after each combat",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "post_combat_heal",
+        "amount": 4
+      }
+    },
+    {
+      "id": "merchant_favor",
+      "name": "Merchant's Favor",
+      "rarity": "uncommon",
+      "description": "Shops have 1 extra item",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "modify_shop_items",
+        "amount": 1
+      }
+    },
+    {
+      "id": "premium_stock",
+      "name": "Premium Stock",
+      "rarity": "rare",
+      "description": "Shops have better quality items",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "upgrade_shop_rarity",
+        "amount": 1
+      }
+    },
+    {
+      "id": "fortune_blessing",
+      "name": "Fortune's Blessing",
+      "rarity": "epic",
+      "description": "Much better chance of rare loot",
+      "type": "utility",
+      "target": "self",
+      "effect": {
+        "action": "upgrade_loot_rarity",
+        "amount": 2
+      }
+    }
+  ]
+}
