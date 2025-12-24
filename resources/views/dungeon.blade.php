@@ -202,22 +202,22 @@
             @endif
 
             <div class="flex flex-wrap gap-3 sm:gap-4 justify-center px-2">
-                @forelse($nextRooms as $room)
+                @forelse($nextRooms as $nextRoom)
                     @php
-                        $canScout = $hasScout && $scoutUses > 0 && $room->displayed_type !== $room->actual_type && !$room->completed;
+                        $canScout = $hasScout && $scoutUses > 0 && $nextRoom->displayed_type !== $nextRoom->actual_type && !$nextRoom->completed;
                     @endphp
                     <div class="flex flex-col items-center gap-2">
-                        <form action="{{ route('match.room.enter', [$match->id, $room->id]) }}" method="POST">
+                        <form action="{{ route('match.room.enter', [$match->id, $nextRoom->id]) }}" method="POST">
                             @csrf
                             <button type="submit"
                                     class="bg-gray-800 hover:bg-gray-700 border-2 border-gray-600 hover:border-blue-500
                                            rounded-lg p-3 sm:p-4 w-36 sm:w-44 transition-all transform hover:scale-105 active:scale-95
-                                           @if($room->visited && $room->completed) opacity-50 cursor-not-allowed @endif"
-                                    @if($room->visited && $room->completed) disabled @endif>
+                                           @if($nextRoom->visited && $nextRoom->completed) opacity-50 cursor-not-allowed @endif"
+                                    @if($nextRoom->visited && $nextRoom->completed) disabled @endif>
 
                                 <!-- Room Icon -->
                                 <div class="text-3xl sm:text-4xl mb-2">
-                                    @switch($room->displayed_type)
+                                    @switch($nextRoom->displayed_type)
                                         @case('enemy')
                                             &#x1F47E;
                                             @break
@@ -246,7 +246,7 @@
 
                                 <!-- Room Type -->
                                 <div class="text-sm sm:text-base font-bold mb-1
-                                    @switch($room->displayed_type)
+                                    @switch($nextRoom->displayed_type)
                                         @case('enemy') text-red-400 @break
                                         @case('elite') text-purple-400 @break
                                         @case('boss') text-red-500 @break
@@ -257,12 +257,12 @@
                                         @default text-gray-400
                                     @endswitch
                                 ">
-                                    {{ ucfirst($room->displayed_type) }}
+                                    {{ ucfirst($nextRoom->displayed_type) }}
                                 </div>
 
                                 <!-- Hint text -->
                                 <div class="text-xs text-gray-500">
-                                    @switch($room->displayed_type)
+                                    @switch($nextRoom->displayed_type)
                                         @case('enemy')
                                             Fight for XP & Gold
                                             @break
@@ -287,7 +287,7 @@
                                     @endswitch
                                 </div>
 
-                                @if($room->completed)
+                                @if($nextRoom->completed)
                                     <div class="text-xs text-gray-600 mt-1">Completed</div>
                                 @endif
                             </button>
@@ -295,7 +295,7 @@
 
                         {{-- Scout button --}}
                         @if($canScout)
-                            <form action="{{ route('match.room.scout', [$match->id, $room->id]) }}" method="POST">
+                            <form action="{{ route('match.room.scout', [$match->id, $nextRoom->id]) }}" method="POST">
                                 @csrf
                                 <button type="submit"
                                         class="text-xs bg-cyan-700 hover:bg-cyan-600 text-white px-3 py-1 rounded transition flex items-center gap-1">
