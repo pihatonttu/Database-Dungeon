@@ -147,12 +147,28 @@
         "scout",
         "xp_drain",
         "empty_pockets",
-        "price_hike"
+        "price_hike",
+        "false_wall",
+        "shadow_veil",
+        "smoke_screen"
       ]
     },
     "deception": {
       "description": "Mind game cards",
-      "cards": ["mirage", "ambush", "fake_sign", "hidden_treasure"]
+      "cards": [
+        "mirage",
+        "ambush",
+        "fake_sign",
+        "hidden_treasure",
+        "false_wall",
+        "phantom_shop",
+        "illusory_enemy",
+        "shadow_veil",
+        "double_bluff",
+        "treasure_map",
+        "false_hope",
+        "smoke_screen"
+      ]
     },
     "difficulty": {
       "description": "Cards that make opponent's dungeon harder",

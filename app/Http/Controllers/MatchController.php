@@ -935,6 +935,7 @@ class MatchController extends Controller
     {
         $match = GameMatch::with('players')->findOrFail($matchId);
         $currentPlayer = $this->getCurrentPlayer($match);
+        $opponent = $currentPlayer ? $match->players->where('id', '!=', $currentPlayer->id)->first() : null;
 
         return response()->json([
             'state' => $match->state,
@@ -945,6 +946,13 @@ class MatchController extends Controller
                 'id' => $currentPlayer->id,
                 'setup_complete' => $currentPlayer->setup_complete,
                 'dungeon_completed' => $currentPlayer->hasCompletedDungeon(),
+                'current_level' => $currentPlayer->current_level,
+            ] : null,
+            'opponent' => $opponent ? [
+                'id' => $opponent->id,
+                'name' => $opponent->name,
+                'current_level' => $opponent->current_level,
+                'dungeon_completed' => $opponent->hasCompletedDungeon(),
             ] : null,
         ]);
     }
@@ -1557,7 +1565,11 @@ class MatchController extends Controller
      */
     private function applyStartingCardEffects(GameMatch $match): void
     {
-        $players = $match->players()->get();
+        // Refresh match to get newly created dungeons
+        $match->refresh();
+
+        // Load players with their dungeon relationships
+        $players = $match->players()->with(['createdDungeon', 'targetDungeon'])->get();
 
         foreach ($players as $player) {
             // Self-targeting cards: check player's createdDungeon (cards they selected)

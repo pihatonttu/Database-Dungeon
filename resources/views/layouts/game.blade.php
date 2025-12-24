@@ -489,35 +489,55 @@
                 @endphp
                 @if(count($selectedCardIds) > 0)
                     <div class="p-2 border-t border-gray-700" x-data="{ showCards: false }">
-                        <button @click="showCards = !showCards" class="w-full flex justify-between items-center text-gray-500 hover:text-gray-300 transition">
-                            <span>Cards ({{ count($selectedCardIds) }})</span>
-                            <span x-text="showCards ? '▼' : '▶'" class="text-[10px]"></span>
+                        <button @click="showCards = !showCards" class="w-full flex justify-between items-center text-gray-400 hover:text-gray-200 transition text-xs">
+                            <span class="flex items-center gap-1">
+                                <span>🃏</span>
+                                <span>Cards</span>
+                                <span class="bg-gray-700 px-1.5 py-0.5 rounded-full text-[10px]">{{ count($selectedCardIds) }}</span>
+                            </span>
+                            <span x-text="showCards ? '▲' : '▼'" class="text-[10px] text-gray-500"></span>
                         </button>
-                        <div x-show="showCards" x-collapse class="mt-2 space-y-1">
-                            @foreach($selectedCardIds as $cardId)
-                                @php $card = $contentRepo->getCard($cardId); @endphp
-                                @if($card)
-                                    @php
-                                        $cardTypeColor = match($card['type']) {
-                                            'deception' => 'border-purple-500/50 bg-purple-900/20',
-                                            'difficulty' => 'border-red-500/50 bg-red-900/20',
-                                            'utility' => 'border-green-500/50 bg-green-900/20',
-                                            default => 'border-gray-600 bg-gray-800'
-                                        };
-                                    @endphp
-                                    <div class="tooltip-shop">
-                                        <div class="flex items-center gap-1 p-1 rounded border {{ $cardTypeColor }} text-xs">
-                                            <span>{{ $cardIcons[$card['type']] ?? '🃏' }}</span>
-                                            <span class="truncate">{{ $card['name'] }}</span>
+                        <div x-show="showCards" x-collapse x-cloak class="mt-2">
+                            <div class="grid grid-cols-2 gap-1.5">
+                                @foreach($selectedCardIds as $cardId)
+                                    @php $card = $contentRepo->getCard($cardId); @endphp
+                                    @if($card)
+                                        @php
+                                            $cardStyle = match($card['type']) {
+                                                'deception' => ['border' => 'border-purple-500/60', 'bg' => 'bg-purple-900/30', 'text' => 'text-purple-300', 'icon_bg' => 'bg-purple-800/50'],
+                                                'difficulty' => ['border' => 'border-red-500/60', 'bg' => 'bg-red-900/30', 'text' => 'text-red-300', 'icon_bg' => 'bg-red-800/50'],
+                                                'utility' => ['border' => 'border-green-500/60', 'bg' => 'bg-green-900/30', 'text' => 'text-green-300', 'icon_bg' => 'bg-green-800/50'],
+                                                default => ['border' => 'border-gray-600', 'bg' => 'bg-gray-800', 'text' => 'text-gray-300', 'icon_bg' => 'bg-gray-700']
+                                            };
+                                            $targetIcon = $card['target'] === 'opponent' ? '⚔️' : '🛡️';
+                                        @endphp
+                                        <div class="tooltip-shop">
+                                            <div class="rounded border {{ $cardStyle['border'] }} {{ $cardStyle['bg'] }} p-1.5 hover:brightness-110 transition cursor-help">
+                                                <div class="flex items-center gap-1 mb-0.5">
+                                                    <span class="text-sm">{{ $cardIcons[$card['type']] ?? '🃏' }}</span>
+                                                    <span class="text-[9px] {{ $cardStyle['text'] }}">{{ $targetIcon }}</span>
+                                                </div>
+                                                <div class="text-[10px] {{ $cardStyle['text'] }} font-medium truncate leading-tight">{{ $card['name'] }}</div>
+                                            </div>
+                                            <div class="tooltip-shop-content text-left" style="min-width: 200px; max-width: 220px;">
+                                                <div class="flex items-center gap-2 mb-1.5">
+                                                    <span class="text-lg">{{ $cardIcons[$card['type']] ?? '🃏' }}</span>
+                                                    <div>
+                                                        <div class="font-bold text-white">{{ $card['name'] }}</div>
+                                                        <div class="text-[10px] text-gray-400">
+                                                            {{ ucfirst($card['type']) }} •
+                                                            <span class="{{ $card['target'] === 'opponent' ? 'text-red-400' : 'text-green-400' }}">
+                                                                {{ $card['target'] === 'opponent' ? 'vs Opponent' : 'Helps You' }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-gray-300 text-xs leading-relaxed">{{ $card['description'] }}</div>
+                                            </div>
                                         </div>
-                                        <div class="tooltip-shop-content text-left" style="min-width: 180px;">
-                                            <div class="font-bold text-white">{{ $card['name'] }}</div>
-                                            <div class="text-gray-400 text-xs mb-1">{{ ucfirst($card['type']) }} - {{ $card['target'] === 'opponent' ? 'vs Opponent' : 'For You' }}</div>
-                                            <div class="text-gray-300 text-xs">{{ $card['description'] }}</div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 @endif

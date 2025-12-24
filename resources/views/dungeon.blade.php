@@ -117,7 +117,36 @@
         </div>
     </div>
 @else
-<div class="h-full flex flex-col">
+<div class="h-full flex flex-col"
+     x-data="{
+         opponentLevel: {{ $opponentLevel }},
+         opponentComplete: {{ $opponentComplete ? 'true' : 'false' }},
+         totalLevels: {{ $totalLevels }},
+         polling: null,
+         init() {
+             this.startPolling();
+         },
+         startPolling() {
+             this.polling = setInterval(() => this.fetchState(), 3000);
+         },
+         async fetchState() {
+             try {
+                 const response = await fetch('{{ route('match.state', $match->id) }}');
+                 const data = await response.json();
+                 if (data.opponent) {
+                     this.opponentLevel = data.opponent.current_level;
+                     this.opponentComplete = data.opponent.dungeon_completed;
+                 }
+             } catch (e) {
+                 console.error('Polling error:', e);
+             }
+         },
+         destroy() {
+             if (this.polling) clearInterval(this.polling);
+         }
+     }"
+     x-init="init()"
+     @beforeunload.window="destroy()">
     <!-- Floor Progress Dots -->
     <div class="py-3 shrink-0">
         {{-- Legend --}}
@@ -138,18 +167,17 @@
                 <span class="ml-2 text-xs text-green-400">✓</span>
             @endif
         </div>
-        {{-- Opponent progress (bottom row) --}}
+        {{-- Opponent progress (bottom row) - now dynamic with Alpine --}}
         <div class="flex justify-center items-center gap-1">
-            @for($i = 1; $i <= $totalLevels; $i++)
-                @php
-                    $isOppCurrent = $i === $opponentLevel + 1 && !$opponentComplete;
-                    $isOppCompleted = $i <= $opponentLevel;
-                @endphp
-                <div class="w-2.5 h-2.5 rounded-full {{ $isOppCompleted ? 'bg-red-500' : ($isOppCurrent ? 'bg-red-500 animate-pulse ring-2 ring-red-300' : 'bg-gray-700') }}"></div>
-            @endfor
-            @if($opponentComplete)
-                <span class="ml-2 text-xs text-yellow-400">⚔️</span>
-            @endif
+            <template x-for="i in totalLevels" :key="i">
+                <div class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                     :class="{
+                         'bg-red-500': i <= opponentLevel,
+                         'bg-red-500 animate-pulse ring-2 ring-red-300': i === opponentLevel + 1 && !opponentComplete,
+                         'bg-gray-700': i > opponentLevel + 1 || (i === opponentLevel + 1 && opponentComplete)
+                     }"></div>
+            </template>
+            <span x-show="opponentComplete" x-cloak class="ml-2 text-xs text-yellow-400">⚔️</span>
         </div>
     </div>
 

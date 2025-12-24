@@ -45,12 +45,118 @@
       "id": "hidden_treasure",
       "name": "Hidden Treasure",
       "rarity": "uncommon",
-      "description": "One enemy room contains bonus loot",
+      "description": "One enemy room in your dungeon contains bonus loot",
       "type": "deception",
-      "target": "opponent",
+      "target": "self",
       "effect": {
         "action": "add_bonus_loot",
         "room_type": "enemy",
+        "count": 1
+      }
+    },
+    {
+      "id": "false_wall",
+      "name": "False Wall",
+      "rarity": "common",
+      "description": "One empty room appears as loot to opponent",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "replace_room",
+        "from_type": "empty",
+        "to_displayed_type": "loot",
+        "count": 1
+      }
+    },
+    {
+      "id": "phantom_shop",
+      "name": "Phantom Shop",
+      "rarity": "uncommon",
+      "description": "One shop appears as an enemy room",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "disguise_room",
+        "from_type": "shop",
+        "to_displayed_type": "enemy",
+        "count": 1
+      }
+    },
+    {
+      "id": "illusory_enemy",
+      "name": "Illusory Enemy",
+      "rarity": "uncommon",
+      "description": "One enemy room appears as loot",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "disguise_room",
+        "from_type": "enemy",
+        "to_displayed_type": "loot",
+        "count": 1
+      }
+    },
+    {
+      "id": "shadow_veil",
+      "name": "Shadow Veil",
+      "rarity": "common",
+      "description": "Two rooms appear as unknown",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "hide_rooms",
+        "count": 2
+      }
+    },
+    {
+      "id": "double_bluff",
+      "name": "Double Bluff",
+      "rarity": "rare",
+      "description": "Two loot rooms are actually enemies",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "replace_room",
+        "from_type": "loot",
+        "to_actual_type": "enemy",
+        "count": 2
+      }
+    },
+    {
+      "id": "treasure_map",
+      "name": "Treasure Map",
+      "rarity": "uncommon",
+      "description": "Reveal all loot rooms in opponent's dungeon",
+      "type": "deception",
+      "target": "self",
+      "effect": {
+        "action": "reveal_room_type",
+        "room_type": "loot"
+      }
+    },
+    {
+      "id": "false_hope",
+      "name": "False Hope",
+      "rarity": "rare",
+      "description": "One elite appears as regular loot",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "disguise_room",
+        "from_type": "elite",
+        "to_displayed_type": "loot",
+        "count": 1
+      }
+    },
+    {
+      "id": "smoke_screen",
+      "name": "Smoke Screen",
+      "rarity": "common",
+      "description": "One room type is randomized in display",
+      "type": "deception",
+      "target": "opponent",
+      "effect": {
+        "action": "randomize_display",
         "count": 1
       }
     },
