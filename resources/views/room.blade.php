@@ -254,53 +254,6 @@
                     @endforeach
                 </div>
 
-                <!-- Sell Your Items Section -->
-                @php $inventory = $player->getInventory(); @endphp
-                @if(count($inventory) > 0)
-                    <div class="mt-4 pt-3 border-t border-gray-700">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-gray-400 text-sm">Sell Your Items</span>
-                            <span class="text-yellow-400 text-xs">50% of value</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            @foreach($inventory as $index => $item)
-                                @php
-                                    $sellPrice = (int) floor(($item['shop_price'] ?? 10) * 0.5);
-                                    $itemRarityBorder = match($item['rarity'] ?? 'common') {
-                                        'legendary' => 'border-yellow-500',
-                                        'epic' => 'border-purple-500',
-                                        'rare' => 'border-blue-500',
-                                        'uncommon' => 'border-green-500',
-                                        default => 'border-gray-600'
-                                    };
-                                @endphp
-                                <div class="bg-gray-700 rounded p-2 border {{ $itemRarityBorder }}">
-                                    <div class="flex gap-2 items-center mb-1">
-                                        <div class="w-8 h-8 flex items-center justify-center shrink-0">
-                                            @if(isset($item['icon']))
-                                                {!! icon($item['icon']) !!}
-                                            @else
-                                                <span class="text-lg">&#x1F4E6;</span>
-                                            @endif
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <div class="text-white text-xs font-bold truncate">{{ $item['name'] }}</div>
-                                            <div class="text-yellow-400 text-xs">{{ $sellPrice }}g</div>
-                                        </div>
-                                    </div>
-                                    <form action="{{ route('match.sell_item', [$match->id]) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="item_index" value="{{ $index }}">
-                                        <button type="submit"
-                                                class="w-full bg-yellow-600 hover:bg-yellow-500 py-1 rounded text-white text-xs transition">
-                                            Sell
-                                        </button>
-                                    </form>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
             </div>
 
         @elseif($room->isEmpty())
